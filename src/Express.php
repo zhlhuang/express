@@ -55,7 +55,7 @@ class Express
     {
 
         if (!\in_array(\strtolower($expressCode), $this->shippingCode)) {
-            throw new InvalidArgumentException('Invalid express code ' . $expressCode);
+            throw new InvalidArgumentException('Invalid express code '.$expressCode);
         }
         if (!$postId) {
             throw new InvalidArgumentException('Post ID is required');

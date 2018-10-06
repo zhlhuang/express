@@ -8,7 +8,6 @@
 
 namespace Zhlhuang\Express\Exceptions;
 
-
 class Exception extends \Exception
 {
 }

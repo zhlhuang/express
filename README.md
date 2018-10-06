@@ -3,7 +3,7 @@
 快递查询（基于快递100）
 
 [![Build Status](https://travis-ci.org/zhlhuang/express.svg?branch=master)](https://travis-ci.org/zhlhuang/express)
-
+[![StyleCI](https://github.styleci.io/repos/151804146/shield?branch=master)](https://github.styleci.io/repos/151804146)
 ## 安装
 
 ```shell
