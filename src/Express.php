@@ -3,15 +3,15 @@
  * Created by PhpStorm.
  * User: zhlhuang
  * Date: 2018/10/6
- * Time: 11:02
+ * Time: 11:02.
  */
 
 namespace Zhlhuang\Express;
 
 
 use GuzzleHttp\Client;
-use Zhlhuang\Express\Exceptions\InvalidArgumentException;
 use Zhlhuang\Express\Exceptions\HttpException;
+use Zhlhuang\Express\Exceptions\InvalidArgumentException;
 
 class Express
 {
@@ -45,9 +45,11 @@ class Express
      * @param        $expressCode
      * @param string $postId
      * @param string $format
-     * @return mixed|string
+     *
      * @throws HttpException
      * @throws InvalidArgumentException
+     *
+     * @return mixed|string
      */
     public function query($expressCode, $postId = '', $format = 'array')
     {
@@ -62,7 +64,7 @@ class Express
         $url = 'http://www.kuaidi100.com/query';
 
         $query = array_filter([
-            'type' => \strtolower($expressCode),
+            'type'   => \strtolower($expressCode),
             'postid' => $postId,
         ]);
 
