@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: zhlhuang
  * Date: 2018/10/6
- * Time: 11:24
+ * Time: 11:24.
  */
 
 namespace Zhlhuang\Express\Tests;
-
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
@@ -58,7 +57,7 @@ class ExpressTest extends TestCase
         $client = \Mockery::mock(Client::class);
         $client->allows()->get('http://www.kuaidi100.com/query', [
             'query' => [
-                'type' => 'shunfeng',
+                'type'   => 'shunfeng',
                 'postid' => '123',
             ],
         ])->andReturn($response);
