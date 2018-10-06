@@ -2,6 +2,8 @@
 
 快递查询（基于快递100）
 
+[![Build Status](https://travis-ci.org/zhlhuang/express.svg?branch=master)](https://travis-ci.org/zhlhuang/express)
+
 ## 安装
 
 ```shell
