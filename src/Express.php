@@ -8,7 +8,6 @@
 
 namespace Zhlhuang\Express;
 
-
 use GuzzleHttp\Client;
 use Zhlhuang\Express\Exceptions\HttpException;
 use Zhlhuang\Express\Exceptions\InvalidArgumentException;
@@ -53,7 +52,6 @@ class Express
      */
     public function query($expressCode, $postId = '', $format = 'array')
     {
-
         if (!\in_array(\strtolower($expressCode), $this->shippingCode)) {
             throw new InvalidArgumentException('Invalid express code '.$expressCode);
         }
