@@ -1,0 +1,21 @@
+{
+  "name": "zhlhuang/express",
+  "description": "快递查询",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "zhlhuang",
+      "email": "364626853@qq.com"
+    }
+  ],
+  "require": {
+    "guzzlehttp/guzzle": "^6.3",
+    "phpunit/phpunit": "^6.5",
+    "mockery/mockery": "^1.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Zhlhuang\\Express\\": "./src/"
+    }
+  }
+}
