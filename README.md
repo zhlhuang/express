@@ -12,26 +12,42 @@ $ composer require zhlhuang/express -vvv
 
 ## 使用
 
+### 免费接口
 ```php
 use Zhlhuang\Express\Express;
 
 $express = new Express();
 $express->query('jd', '78785333107', 'json');
 ```
+### 快递100企业版本
 
+**PS:优先调用免费版本，查不到信息或者调用失败的时候会继续调用企业版本**
+
+```php
+use Zhlhuang\Express\Express;
+
+$kuaidiFree = new KuaidiFree();
+//实例化企业版本的对象
+$kuaidiCompany = new KuaidiCompany([
+    'customer' => 'customercustomer',
+    'key'      => 'keykeykey'
+]);
+$express = new Express([$kuaidiFree, $kuaidiCompany]);
+$express->query('jd', '78785333107', 'json');
+```
 ## 正常响应
 ```json
 {
 	"message": "ok",
-	"nu": "532071843804",
-	"ischeck": "1",
+	"nu": "532071843804", //单号
+	"ischeck": "1",//是否签收标记
 	"condition": "F00",
-	"com": "lianhaowuliu",
+	"com": "lianhaowuliu", //快递公司编码,一律用小写字母
 	"status": "200",
-	"state": "3",
+	"state": "3", //快递单当前签收状态，包括0在途中、1已揽收、2疑难、3已签收
 	"data": [{
-		"time": "2018-07-17 11:26:35",
-		"ftime": "2018-07-17 11:26:35",
+		"time": "2018-07-17 11:26:35", //时间，原始格式
+		"ftime": "2018-07-17 11:26:35", //格式化后时间
 		"context": "已签收,签收人是【】签收图片",
 		"location": ""
 	}, {
