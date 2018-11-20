@@ -8,9 +8,9 @@
 
 namespace Zhlhuang\Express;
 
-use GuzzleHttp\Client;
-use Zhlhuang\Express\Exceptions\HttpException;
 use Zhlhuang\Express\Exceptions\InvalidArgumentException;
+use Zhlhuang\Express\Exceptions\NoRecordException;
+use Zhlhuang\Express\Platform\KuaidiFree;
 
 class Express
 {
@@ -27,17 +27,19 @@ class Express
         'zhaijisong', //宅急送
         'jd', //京东
     ];
+    protected $platform = [
+    ];
 
-    protected $guzzleOptions = [];
-
-    public function getHttpClient()
+    function __construct($platform = [])
     {
-        return new Client($this->guzzleOptions);
-    }
-
-    public function setGuzzleOptions(array $options)
-    {
-        $this->guzzleOptions = $options;
+        if ($platform) {
+            $this->platform = $platform;
+        } else {
+            //默认使用快递100免费模式
+            $this->platform = [
+                new KuaidiFree()
+            ];
+        }
     }
 
     /**
@@ -45,10 +47,9 @@ class Express
      * @param string $postId
      * @param string $format
      *
-     * @throws HttpException
      * @throws InvalidArgumentException
-     *
-     * @return mixed|string
+     * @throws \Exception
+     * @return string
      */
     public function query($expressCode, $postId = '', $format = 'array')
     {
@@ -58,22 +59,18 @@ class Express
         if (!$postId) {
             throw new InvalidArgumentException('Post ID is required');
         }
-
-        $url = 'http://www.kuaidi100.com/query';
-
-        $query = array_filter([
-            'type'   => \strtolower($expressCode),
-            'postid' => $postId,
-        ]);
-
-        try {
-            $response = $this->getHttpClient()->get($url, [
-                'query' => $query,
-            ])->getBody()->getContents();
-
-            return 'array' === $format ? \json_decode($response, true) : $response;
-        } catch (\Exception $e) {
-            throw new HttpException($e->getMessage(), $e->getCode(), $e);
+        foreach ($this->platform as $key => $platform) {
+            try {
+                $response = $platform->query($expressCode, $postId);
+                return 'array' === $format ? $response : \json_encode($response);
+            } catch (\Exception $e) {
+                //如果接口有异常则不抛出继续下一个平台调用
+                if ($key == count($this->platform) - 1) {
+                    //最后一个平台调用异常
+                    throw $e;
+                }
+            }
         }
+        throw new NoRecordException('查不到该快递信息', 404);
     }
 }
