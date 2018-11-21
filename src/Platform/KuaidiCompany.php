@@ -62,6 +62,7 @@ class KuaidiCompany
             'sign'     => strtoupper($sign),
             'param'    => $params,
         ];
+
         try {
             $response = $this->getHttpClient()->get($this->url, ['query' => $postData])->getBody()->getContents();
             $response = \json_decode($response, true);

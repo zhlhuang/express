@@ -34,6 +34,7 @@ class KuaidiFree
             'type'   => \strtolower($expressCode),
             'postid' => $postId,
         ]);
+
         try {
             $response = $this->getHttpClient()->get($this->url, [
                 'query' => $query,
