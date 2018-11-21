@@ -53,8 +53,8 @@ class KuaidiCompany
         }
 
         $params = \json_encode([
-            "com" => $expressCode,
-            "num" => $postId,
+            'com' => $expressCode,
+            'num' => $postId,
         ]);
         $sign = md5($params.$this->config['key'].$this->config['customer']);
         $postData = [
@@ -65,7 +65,7 @@ class KuaidiCompany
         try {
             $response = $this->getHttpClient()->get($this->url, ['query' => $postData])->getBody()->getContents();
             $response = \json_decode($response, true);
-            if (!empty($response['status']) && $response['status'] != "200") {
+            if (!empty($response['status']) && $response['status'] != '200') {
                 throw new NoRecordException('查不到该数据', 404);
             }
 

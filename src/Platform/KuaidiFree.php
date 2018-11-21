@@ -39,7 +39,7 @@ class KuaidiFree
                 'query' => $query,
             ])->getBody()->getContents();
             $response = \json_decode($response, true);
-            if (!empty($response['status']) && $response['status'] != "200") {
+            if (!empty($response['status']) && $response['status'] != '200') {
                 throw new NoRecordException('查不到该数据', 404);
             }
 
