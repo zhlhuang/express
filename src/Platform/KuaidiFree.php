@@ -6,6 +6,7 @@
  * Date: 2018/11/20
  * Time: 13:53.
  */
+
 namespace Zhlhuang\Express\Platform;
 
 use GuzzleHttp\Client;
@@ -27,7 +28,7 @@ class KuaidiFree
         $this->guzzleOptions = $options;
     }
 
-    function query($expressCode, $postId = '')
+    public function query($expressCode, $postId = '')
     {
         $query = array_filter([
             'type'   => \strtolower($expressCode),
@@ -41,6 +42,7 @@ class KuaidiFree
             if (!empty($response['status']) && $response['status'] != "200") {
                 throw new NoRecordException('查不到该数据', 404);
             }
+
             return $response;
         } catch (\Exception $e) {
             throw new HttpException($e->getMessage(), $e->getCode(), $e);

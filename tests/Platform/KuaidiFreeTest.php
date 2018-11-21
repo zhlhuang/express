@@ -14,7 +14,6 @@ use GuzzleHttp\Psr7\Response;
 use Mockery\Matcher\AnyArgs;
 use PHPUnit\Framework\TestCase;
 use Zhlhuang\Express\Exceptions\HttpException;
-use Zhlhuang\Express\Express;
 use Zhlhuang\Express\Platform\KuaidiFree;
 
 class KuaidiFreeTest extends TestCase

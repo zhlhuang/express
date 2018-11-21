@@ -30,14 +30,14 @@ class Express
     protected $platform = [
     ];
 
-    function __construct($platform = [])
+    public function __construct($platform = [])
     {
         if ($platform) {
             $this->platform = $platform;
         } else {
             //默认使用快递100免费模式
             $this->platform = [
-                new KuaidiFree()
+                new KuaidiFree(),
             ];
         }
     }
@@ -49,6 +49,7 @@ class Express
      *
      * @throws InvalidArgumentException
      * @throws \Exception
+     *
      * @return string
      */
     public function query($expressCode, $postId = '', $format = 'array')
@@ -62,6 +63,7 @@ class Express
         foreach ($this->platform as $key => $platform) {
             try {
                 $response = $platform->query($expressCode, $postId);
+
                 return 'array' === $format ? $response : \json_encode($response);
             } catch (\Exception $e) {
                 //如果接口有异常则不抛出继续下一个平台调用
@@ -71,6 +73,7 @@ class Express
                 }
             }
         }
+
         throw new NoRecordException('查不到该快递信息', 404);
     }
 }

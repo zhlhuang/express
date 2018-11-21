@@ -31,5 +31,4 @@ class ExpressTest extends TestCase
         $express->query('shunfeng', '');
         $this->fail('Faild to assert');
     }
-
 }

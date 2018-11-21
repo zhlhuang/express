@@ -19,7 +19,7 @@ class KuaidiCompany
     protected $guzzleOptions = [];
     protected $config = [];
 
-    function __construct($config = [])
+    public function __construct($config = [])
     {
         $this->config = $config;
     }
@@ -42,7 +42,7 @@ class KuaidiCompany
         $this->guzzleOptions = $options;
     }
 
-    function query($expressCode, $postId = '')
+    public function query($expressCode, $postId = '')
     {
         if (empty($this->config['key'])) {
             throw new InvalidArgumentException('config key is required');
@@ -54,13 +54,13 @@ class KuaidiCompany
 
         $params = \json_encode([
             "com" => $expressCode,
-            "num" => $postId
+            "num" => $postId,
         ]);
         $sign = md5($params.$this->config['key'].$this->config['customer']);
         $postData = [
             'customer' => $this->config['customer'],
             'sign'     => strtoupper($sign),
-            'param'    => $params
+            'param'    => $params,
         ];
         try {
             $response = $this->getHttpClient()->get($this->url, ['query' => $postData])->getBody()->getContents();
@@ -68,6 +68,7 @@ class KuaidiCompany
             if (!empty($response['status']) && $response['status'] != "200") {
                 throw new NoRecordException('查不到该数据', 404);
             }
+
             return $response;
         } catch (\Exception $e) {
             throw new HttpException($e->getMessage(), $e->getCode(), $e);

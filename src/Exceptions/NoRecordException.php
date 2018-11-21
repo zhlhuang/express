@@ -8,8 +8,6 @@
 
 namespace Zhlhuang\Express\Exceptions;
 
-
 class NoRecordException extends Exception
 {
-
 }

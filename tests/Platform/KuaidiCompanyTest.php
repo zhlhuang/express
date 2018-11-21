@@ -31,7 +31,7 @@ class KuaidiCompanyTest extends TestCase
     public function testQueryExpressWithInvalidConfigCustomer()
     {
         $express = new KuaidiCompany([
-            'key' => 'abc'
+            'key' => 'abc',
         ]);
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('config customer is required');
@@ -49,7 +49,7 @@ class KuaidiCompanyTest extends TestCase
         $w = \Mockery::mock(KuaidiCompany::class)->makePartial();
         $w->setConfig([
             'customer' => 'abc',
-            'key'      => 'abc'
+            'key'      => 'abc',
         ]);
         $w->allows()->getHttpClient()->andReturn($client);
         // 接着需要断言调用时会产生异常。
@@ -66,17 +66,16 @@ class KuaidiCompanyTest extends TestCase
             'query' => [
                 'customer' => 'abc',
                 'sign'     => strtoupper(md5('{"com":"shunfeng","num":"123"}'.'abc'.'abc')),
-                'param'    => '{"com":"shunfeng","num":"123"}'
+                'param'    => '{"com":"shunfeng","num":"123"}',
             ],
         ])->andReturn($response);
 
         $express = \Mockery::mock(KuaidiCompany::class)->makePartial();
         $express->setConfig([
             'customer' => 'abc',
-            'key'      => 'abc'
+            'key'      => 'abc',
         ]);
         $express->allows()->getHttpClient()->andReturn($client);
         $this->assertSame(['message' => 'ok'], $express->query('shunfeng', '123'));
     }
-
 }
