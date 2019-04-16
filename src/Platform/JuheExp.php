@@ -15,19 +15,18 @@ use Zhlhuang\Express\Exceptions\NoRecordException;
 
 class JuheExp
 {
-
     private $juheShippingCode = [
-        'shentong'       => "sto", //申通
-        'ems'            => "ems", //EMS
-        'shunfeng'       => "sf", //顺丰
-        'yuantong'       => "yt", //圆通
-        'zhongtong'      => "zto", //中通
-        'tiantian'       => "tt", //天天
-        'huitongkuaidi'  => "ht", //汇通
-        'quanfengkuaidi' => "qf", //全峰快递
-        'debangwuliu'    => "db", //德邦物流
-        'zhaijisong'     => "db", //宅急送
-        'jd'             => "jd", //京东
+        'shentong'       => 'sto', //申通
+        'ems'            => 'ems', //EMS
+        'shunfeng'       => 'sf', //顺丰
+        'yuantong'       => 'yt', //圆通
+        'zhongtong'      => 'zto', //中通
+        'tiantian'       => 'tt', //天天
+        'huitongkuaidi'  => 'ht', //汇通
+        'quanfengkuaidi' => 'qf', //全峰快递
+        'debangwuliu'    => 'db', //德邦物流
+        'zhaijisong'     => 'db', //宅急送
+        'jd'             => 'jd', //京东
     ];
     private $url = 'http://v.juhe.cn/exp/index';
     protected $guzzleOptions = [];
@@ -80,22 +79,23 @@ class JuheExp
             }
             //统一返回格式
             $result = [
-                "message"   => $response['reason'],
-                "state"     => 0,
-                "status"    => 200,
-                "condition" => "F00",
-                "ischeck"   => 0,
-                "com"       => $expressCode,
-                "nu"        => $postId,
-                "data"      => []
+                'message'   => $response['reason'],
+                'state'     => 0,
+                'status'    => 200,
+                'condition' => 'F00',
+                'ischeck'   => 0,
+                'com'       => $expressCode,
+                'nu'        => $postId,
+                'data'      => [],
             ];
             foreach ($response['result']['list'] as $value) {
                 $result['data'][] = [
-                    "context" => $value["datetime"],
-                    "time"    => $value["remark"],
-                    "ftime"   => $value["datetime"]
+                    'context' => $value['datetime'],
+                    'time'    => $value['remark'],
+                    'ftime'   => $value['datetime'],
                 ];
             }
+
             return $result;
         } catch (\Exception $e) {
             throw new HttpException($e->getMessage(), $e->getCode(), $e);
