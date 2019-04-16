@@ -8,7 +8,6 @@
 
 namespace Zhlhuang\Express\Tests;
 
-
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 use Mockery\Matcher\AnyArgs;
@@ -64,7 +63,7 @@ class JuheExpTest extends TestCase
             'query' => [
                 'key' => 'abc',
                 'com' => 'sf',
-                'no'  => '123'
+                'no'  => '123',
             ],
         ])->andReturn($response);
 
@@ -74,14 +73,14 @@ class JuheExpTest extends TestCase
         ]);
         $express->allows()->getHttpClient()->andReturn($client);
         $this->assertSame([
-            "message"   => "ok",
-            "state"     => 0,
-            "status"    => 200,
-            "condition" => "F00",
-            "ischeck"   => 0,
-            "com"       => 'shunfeng',
-            "nu"        => '123',
-            "data"      => []
+            'message'   => 'ok',
+            'state'     => 0,
+            'status'    => 200,
+            'condition' => 'F00',
+            'ischeck'   => 0,
+            'com'       => 'shunfeng',
+            'nu'        => '123',
+            'data'      => [],
         ], $express->query('shunfeng', '123'));
     }
 }
