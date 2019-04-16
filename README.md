@@ -34,7 +34,6 @@ $kuaidiCompany = new KuaidiCompany([
 ]);
 //实例化聚合数据
 $juheExp = new JuheExp([
-    'customer' => 'customercustomer',
     'key'      => 'keykeykey'
 ]);
 $express = new Express([$kuaidiFree, $kuaidiCompany, $juheExp]);
