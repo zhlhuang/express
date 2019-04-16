@@ -90,8 +90,8 @@ class JuheExp
             ];
             foreach ($response['result']['list'] as $value) {
                 $result['data'][] = [
-                    'context' => $value['datetime'],
-                    'time'    => $value['remark'],
+                    'context' => $value['remark'],
+                    'time'    => $value['datetime'],
                     'ftime'   => $value['datetime'],
                 ];
             }
