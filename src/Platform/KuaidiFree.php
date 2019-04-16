@@ -44,6 +44,14 @@ class KuaidiFree
                 throw new NoRecordException('查不到该数据', 404);
             }
 
+            //如果返回数据是查不到该数据，同样抛出异常处理
+            if (!empty($response["data"][0])) {
+                $firstData = $response["data"][0];
+                if ($firstData['context'] === '查无结果') {
+                    throw new NoRecordException('查不到该数据', 404);
+                }
+            }
+
             return $response;
         } catch (\Exception $e) {
             throw new HttpException($e->getMessage(), $e->getCode(), $e);

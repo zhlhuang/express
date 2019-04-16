@@ -32,7 +32,12 @@ $kuaidiCompany = new KuaidiCompany([
     'customer' => 'customercustomer',
     'key'      => 'keykeykey'
 ]);
-$express = new Express([$kuaidiFree, $kuaidiCompany]);
+//实例化聚合数据
+$juheExp = new JuheExp([
+    'customer' => 'customercustomer',
+    'key'      => 'keykeykey'
+]);
+$express = new Express([$kuaidiFree, $kuaidiCompany, $juheExp]);
 $express->query('jd', '78785333107', 'json');
 ```
 ## 正常响应
