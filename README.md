@@ -26,6 +26,7 @@ $express->query('jd', '78785333107', 'json');
 ```php
 use Zhlhuang\Express\Express;
 
+//快递100免费版已不可调用，建议使用快递鸟
 $kuaidiFree = new KuaidiFree();
 //实例化企业版本的对象
 $kuaidiCompany = new KuaidiCompany([
@@ -36,7 +37,14 @@ $kuaidiCompany = new KuaidiCompany([
 $juheExp = new JuheExp([
     'key'      => 'keykeykey'
 ]);
-$express = new Express([$kuaidiFree, $kuaidiCompany, $juheExp]);
+
+//实例化快递鸟，支持申通，圆通，中通免费
+$Kdniao = new Kdniao([
+    'EBusinessID' => '123',
+    'key'         => 'key-123-123'
+]);
+
+$express = new Express([$Kdniao, $kuaidiCompany, $juheExp]);
 $express->query('jd', '78785333107', 'json');
 ```
 ## 正常响应
