@@ -25,7 +25,7 @@ class JuheExp
         'huitongkuaidi'  => 'ht', //汇通
         'quanfengkuaidi' => 'qf', //全峰快递
         'debangwuliu'    => 'db', //德邦物流
-        'zhaijisong'     => 'db', //宅急送
+        'zhaijisong'     => 'zjs', //宅急送
         'jd'             => 'jd', //京东
     ];
     private $url = 'http://v.juhe.cn/exp/index';
