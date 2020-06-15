@@ -8,7 +8,6 @@
 
 namespace Zhlhuang\Express\Tests;
 
-
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 use Mockery\Matcher\AnyArgs;
@@ -54,7 +53,7 @@ class KdniaoTest extends TestCase
         $requestData = [
             'OrderCode'    => '',
             'ShipperCode'  => 'ZTO',
-            'LogisticCode' => '222'
+            'LogisticCode' => '222',
         ];
         $requestDataString = \json_encode($requestData);
         $dataSign = urlencode(base64_encode(md5($requestDataString.'key-123-key')));
@@ -63,7 +62,7 @@ class KdniaoTest extends TestCase
                 'RequestData' => $requestDataString,
                 'EBusinessID' => '123',
                 'RequestType' => 1002,
-                'DataSign'    => $dataSign
+                'DataSign'    => $dataSign,
             ],
         ])->andReturn($response);
 

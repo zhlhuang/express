@@ -68,7 +68,7 @@ class Kdniao
         $requestData = [
             'OrderCode'    => '',
             'ShipperCode'  => $kdniaoExpressCode,
-            'LogisticCode' => $postId
+            'LogisticCode' => $postId,
         ];
         $requestDataString = \json_encode($requestData);
         $dataSign = urlencode(base64_encode(md5($requestDataString.$this->config['key'])));
@@ -76,8 +76,9 @@ class Kdniao
             'RequestData' => $requestDataString,
             'EBusinessID' => $this->config['EBusinessID'],
             'RequestType' => 1002,
-            'DataSign'    => $dataSign
+            'DataSign'    => $dataSign,
         ];
+
         try {
             $response = $this->getHttpClient()->get($this->url, ['query' => $postData])->getBody()->getContents();
             $response = \json_decode($response, true);
@@ -105,6 +106,7 @@ class Kdniao
                     ];
                 }
             }
+
             return $result;
         } catch (\Exception $e) {
             throw new HttpException($e->getMessage(), $e->getCode(), $e);
