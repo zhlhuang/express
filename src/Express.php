@@ -20,6 +20,7 @@ class Express
         'shunfeng', //顺丰
         'yuantong', //圆通
         'zhongtong', //中通
+        'yunda', //韵达
         'tiantian', //天天
         'huitongkuaidi', //汇通
         'quanfengkuaidi', //全峰快递

@@ -21,6 +21,7 @@ class JuheExp
         'shunfeng'       => 'sf', //顺丰
         'yuantong'       => 'yt', //圆通
         'zhongtong'      => 'zto', //中通
+        "yunda"          => 'yd', //韵达
         'tiantian'       => 'tt', //天天
         'huitongkuaidi'  => 'ht', //汇通
         'quanfengkuaidi' => 'qf', //全峰快递

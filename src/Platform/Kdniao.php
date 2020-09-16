@@ -21,6 +21,7 @@ class Kdniao
         'shunfeng'      => 'SF', //顺丰
         'yuantong'      => 'YTO', //圆通
         'zhongtong'     => 'ZTO', //中通
+        'yunda'         => 'YD', //韵达
         'tiantian'      => 'HHTT', //天天
         'huitongkuaidi' => 'HTKY', //汇通
         'debangwuliu'   => 'DBL', //德邦物流
